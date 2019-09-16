@@ -112,6 +112,12 @@ Routing generally means looking at the URL in the browser's location bar and "ta
 - [redux-first-routing][]: Handle the _data_ aspect of routing (which data does this route need?). Of course application data should go into redux.
 - [universal-router][]: Handle the _view_ aspect of routing (what element should this route display? where should the output go?).
 
+This split allows for the following benefits:
+
+- Putting "redux first", even in routing, means that the state in redux really drives _all_ the other aspects of the application.
+- This allows to load data in advance or in parallel to the view that will display it (if the view is loaded lazily).
+- This also allows to eagerly load data, e.g. for master-detail views.
+
 ### Development server
 
 To view web components we need to put them in an HTML page, and have that served from an HTTP server locally. Same is true for a web application built using web components.
