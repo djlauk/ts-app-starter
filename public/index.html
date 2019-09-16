@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>My App</title>
+
+    <base href="/" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, height=device-height, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="description" content="Sample App." />
+
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        font-family: "Roboto", "Noto", sans-serif;
+        line-height: 1.5;
+        color: rgba(0, 0, 0, 0.54);
+      }
+    </style>
+
+    <!-- Put local development configuration here -->
+    <script>
+      window.MyApp = {
+        api: "https://jsonplaceholder.typicode.com"
+      };
+    </script>
+    <!--
+      Have server generate a script tag with configuration
+      from its environment in a script tag here.
+
+      **Key idea:**
+      The app should be just copied around from different stages
+      (dev, integration, production, A/B testing) without having
+      to be modified (by a build / bundling step).
+      It should just pick up the environment.
+
+      See also: https://12factor.net
+     -->
+
+    <script async src="/scripts/my-app.min.js"></script>
+  </head>
+
+  <body>
+    <app-shell></app-shell>
+    <noscript>Please enable JavaScript to view this website.</noscript>
+  </body>
+</html>
