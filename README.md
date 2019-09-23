@@ -51,9 +51,29 @@ In another terminal window run the development server: `npm start`
 
 ### How to add another component / view
 
-**TO BE WRITTEN, YET ...**
+Assuming you want to create a simple view for a 'search' page, which will be available under `/search/:pattern`, here's what you need to do:
 
-Rough outline / general thoughts:
+1.  Create `SearchElement` (tag `<view-search>`) in `src/ui/view-search.ts`.
+2.  Add `import './view-search'` to `src/ui/index.ts`.
+3.  Add route for view to `src/ui/app-router.ts`.
+4.  Add route for data to `src/store/routing/routes.ts`.
+5.  Add redux items in `src/store/search/` in [re-ducks][] style:
+    - `actions.ts`: actions (enum) and action creators.
+    - `index.ts`: re-exports items from sub-modules (i.e. selectors and actions).
+    - `model.ts`: defines the model(s) for this duck.
+    - `reducer.ts`: state (sub-)tree structure, default value, and reducer.
+    - `sagas.ts`: [redux-saga][]s for this duck.
+    - `selectors.ts`: [reselect][] selectors for this duck.
+6.  Import and incorporate redux items into the app:
+    - In `src/store/sagas.ts`: `import search from './search/sagas'` and add it to the exported `rootSagas`.
+    - In `src/store/reducer.ts`:
+      - `import search, { SearchState } from './search/reducer'`.
+      - add `SearchState` to the exported `RootState`.
+      - add `search` to the exported `rootReducer`.
+
+#### General hints
+
+Some general thoughts to keep in mind:
 
 - Don't be put off by the number of files and folders. At first it looks scary, but good code structure will pay off in the _long run_.
 - Views...
@@ -61,8 +81,10 @@ Rough outline / general thoughts:
     - The components should go into "the other project" (based on [ts-wc-starter][]) and be tested there.
     - Pass data to the components using [lit-element][]'s property binding, to avoid performance degradation due to serialization / de-serialization (attribute values are always strings).
   - Don't be scared to create many components. (E.g. it's OK to have one component for the container and one for the contained items.)
-- Handle business logic inside redux
-  - This includes decisions on what actionable items (e.g. edit buttons) to display in the UI
+- Handle business logic inside redux.
+  - This includes decisions on what actionable items (e.g. edit buttons) to display in the UI.
+  - Redux (with all its tooling) will handle lots of actions and small changes to state just fine.
+  - It's OK to have UI "logic" on the state (e.g. "canEditProject", "canSendMessage", ...); actually, it's usually better _there_ than doing such logic in your templates (e.g. `if (userIsAdmin() || userIsProjectOwner()) { showEditButton() }`).
 - **DON'T RELY ON CLIENT SECURITY!**<br>If you can tinker with stuff in Chrome dev tools, so can anyone else, right?!<br>**ALWAYS ENFORCE SECURITY ON THE SERVER SIDE!**
 
 ---
