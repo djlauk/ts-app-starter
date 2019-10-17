@@ -21,17 +21,21 @@
       }
 
       body {
-        font-family: "Roboto", "Noto", sans-serif;
+        font-family: 'Roboto', 'Noto', sans-serif;
         line-height: 1.5;
         color: rgba(0, 0, 0, 0.54);
       }
     </style>
 
+    <!-- POLYFILLS ... dear web, please grow out of this soon! -->
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=WebAnimations,requestIdleCallback"></script>
+
     <!-- Put local development configuration here -->
     <script>
       window.MyApp = {
-        api: "https://jsonplaceholder.typicode.com"
-      };
+        api: 'https://jsonplaceholder.typicode.com',
+      }
     </script>
     <!--
       Have server generate a script tag with configuration
