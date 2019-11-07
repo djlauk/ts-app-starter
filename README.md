@@ -32,6 +32,10 @@ How to exactly use these is beyond the scope of these instructions.
       - author
       - license (if you need)
       - in script `relink`: change the name of you web component project, that you want to link to (for development)
+    - In `src/store/storage.ts`:
+      - `storageKey`
+      - `storageVersion`
+      - `shouldPersist` logic (if you need)
     - In `LICENSE.md`:
       - copyright year
       - copyright holder
