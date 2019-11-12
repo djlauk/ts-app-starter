@@ -11,7 +11,9 @@
     "lint:eslint": "eslint 'src/**/*.ts'",
     "lint:prettier": "prettier 'src/**/*.ts' --list-different || ( echo '↑↑↑  these files are not well formatted  ↑↑↑' && exit 1 )",
     "format:eslint": "eslint 'src/**/*.ts' --fix",
-    "format:prettier": "prettier 'src/**/*.ts' --write"
+    "format:prettier": "prettier 'src/**/*.ts' --write",
+    "generate:duck": "hygen duck create",
+    "generate:view": "hygen view create"
   },
   "author": "Daniel J. Lauk <daniel.lauk@gmail.com>",
   "license": "ISC",
@@ -26,6 +28,7 @@
     "connect-logger": "0.0.1",
     "eslint": "^6.4.0",
     "husky": "^3.0.5",
+    "hygen": "^5.0.1",
     "jsonlint": "^1.6.3",
     "lint-staged": "^9.2.5",
     "prettier": "^1.18.2",
