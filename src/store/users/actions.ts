@@ -34,9 +34,6 @@ export const UserActions = {
     createAction(UserTypes.USER_FETCH_FAILURE, {
       id,
       error,
-      name: error.name,
-      message: error.message,
-      stack: error.stack,
     }),
 }
 

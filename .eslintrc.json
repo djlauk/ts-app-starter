@@ -1,18 +1,35 @@
 {
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:jest/recommended",
+    "plugin:jest/style"
+  ],
   "env": {
     "browser": true,
-    "mocha": true
+    "jest": true
   },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2017,
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint/eslint-plugin"],
+  "plugins": [
+    "@typescript-eslint/eslint-plugin",
+    "jest"
+  ],
   "rules": {
     "@typescript-eslint/no-inferrable-types": "off",
     "@typescript-eslint/member-delimiter-style": "off"
   },
-  "overrides": [{"files": ["*.spec.ts"], "globals": {"chai": "readonly"}}]
+  "overrides": [
+    {
+      "files": [
+        "rollup.config.js"
+      ],
+      "env": {
+        "node": true
+      }
+    }
+  ]
 }
