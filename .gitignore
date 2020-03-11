@@ -1,6 +1,8 @@
 # PROJECT SPECIFIC STUFF
 # ----------------------------------------------------------------------
 
+.nyc_output/
+coverage/
 public/scripts/
 
 

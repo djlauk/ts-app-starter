@@ -1,0 +1,8 @@
+check-leaks: true
+extension:
+  - ts
+require:
+  - esm
+  - jsdom-global/register
+  - ts-node/register
+spec: src/**/*.spec.ts

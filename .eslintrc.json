@@ -2,8 +2,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:jest/recommended",
-    "plugin:jest/style"
+    "plugin:mocha/recommended"
   ],
   "env": {
     "browser": true,
@@ -16,11 +15,12 @@
   },
   "plugins": [
     "@typescript-eslint/eslint-plugin",
-    "jest"
+    "mocha"
   ],
   "rules": {
     "@typescript-eslint/no-inferrable-types": "off",
-    "@typescript-eslint/member-delimiter-style": "off"
+    "@typescript-eslint/member-delimiter-style": "off",
+    "mocha/no-mocha-arrows": "off"
   },
   "overrides": [
     {

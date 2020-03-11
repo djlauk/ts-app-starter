@@ -1,0 +1,7 @@
+require:
+  - esm
+  - jsdom-global/register
+  - ts-node/register
+reporter:
+  - text
+  - html

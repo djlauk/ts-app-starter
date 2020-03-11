@@ -1,3 +1,6 @@
+import { describe, it } from 'mocha'
+import { expect } from 'chai'
+
 import { UserActions, UserTypes } from './actions'
 import { User } from './model'
 
@@ -28,7 +31,7 @@ const EXAMPLE_USER: User = {
 describe('user actions', () => {
   it('should create USER_SELECT', () => {
     const action = UserActions.selectUser(5)
-    expect(action).toStrictEqual({
+    expect(action).to.deep.equal({
       type: UserTypes.USER_SELECT,
       payload: {
         id: 5,
@@ -38,14 +41,14 @@ describe('user actions', () => {
 
   it('should create USER_LIST_FETCH', () => {
     const action = UserActions.fetchUserList()
-    expect(action).toStrictEqual({
+    expect(action).to.deep.equal({
       type: UserTypes.USER_LIST_FETCH,
     })
   })
 
   it('should create USER_LIST_FETCH_REQUEST', () => {
     const action = UserActions.fetchUserListRequest()
-    expect(action).toStrictEqual({
+    expect(action).to.deep.equal({
       type: UserTypes.USER_LIST_FETCH_REQUEST,
     })
   })
@@ -53,7 +56,7 @@ describe('user actions', () => {
   it('should create USER_LIST_FETCH_SUCCESS', () => {
     const users: User[] = [EXAMPLE_USER]
     const action = UserActions.fetchUserListSuccess(users)
-    expect(action).toStrictEqual({
+    expect(action).to.deep.equal({
       type: UserTypes.USER_LIST_FETCH_SUCCESS,
       payload: {
         users,
@@ -63,17 +66,16 @@ describe('user actions', () => {
 
   it('should create USER_LIST_FETCH_FAILURE', () => {
     const action = UserActions.fetchUserListFailure(new Error('example error'))
-    expect(action).toStrictEqual({
-      type: UserTypes.USER_LIST_FETCH_FAILURE,
-      payload: {
-        error: new Error('example error'),
-      },
-    })
+    expect(action).to.have.property('type', UserTypes.USER_LIST_FETCH_FAILURE)
+    expect(action)
+      .to.have.nested.property('payload.error')
+      .to.be.an('error')
+      .and.have.property('message', 'example error')
   })
 
   it('should create USER_FETCH', () => {
     const action = UserActions.fetchUser(12)
-    expect(action).toStrictEqual({
+    expect(action).to.deep.equal({
       type: UserTypes.USER_FETCH,
       payload: {
         id: 12,
@@ -83,7 +85,7 @@ describe('user actions', () => {
 
   it('should create USER_FETCH_REQUEST', () => {
     const action = UserActions.fetchUserRequest(13)
-    expect(action).toStrictEqual({
+    expect(action).to.deep.equal({
       type: UserTypes.USER_FETCH_REQUEST,
       payload: {
         id: 13,
@@ -93,7 +95,7 @@ describe('user actions', () => {
 
   it('should create USER_FETCH_SUCCESS', () => {
     const action = UserActions.fetchUserSuccess(EXAMPLE_USER)
-    expect(action).toStrictEqual({
+    expect(action).to.deep.equal({
       type: UserTypes.USER_FETCH_SUCCESS,
       payload: {
         user: EXAMPLE_USER,
@@ -103,12 +105,11 @@ describe('user actions', () => {
 
   it('should create USER_FETCH_FAILURE', () => {
     const action = UserActions.fetchUserFailure(14, new Error('example error'))
-    expect(action).toStrictEqual({
-      type: UserTypes.USER_FETCH_FAILURE,
-      payload: {
-        id: 14,
-        error: new Error('example error'),
-      },
-    })
+    expect(action).to.have.property('type', UserTypes.USER_FETCH_FAILURE)
+    expect(action).to.have.nested.property('payload.id', 14)
+    expect(action)
+      .to.have.nested.property('payload.error')
+      .to.be.an('error')
+      .and.have.property('message', 'example error')
   })
 })
