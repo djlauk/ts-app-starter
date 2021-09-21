@@ -1,5 +1,7 @@
 # ts-app-starter
 
+**NOTE: ⚠️ This project has been archived. It is kept around only for historical purposes.**
+
 This is a starter / template project for building web apps with [TypeScript][] and [lit-element][].
 
 ## Credits
